@@ -1,0 +1,13 @@
+$OpenBSD$
+--- libdwarf/Makefile.orig	Wed Oct 26 22:47:28 2011
++++ libdwarf/Makefile	Sun Jun 24 15:32:00 2012
+@@ -82,7 +82,8 @@ SHLIB_MAJOR=	3
+ 
+ WARNS?=	6
+ 
+-LDADD+=		-lelf
++LDADD+=		-L../libelf
++LDADD+=		-l_elf
+ 
+ MAN=	dwarf_add_AT_comp_dir.3				\
+ 	dwarf_add_AT_const_value_string.3		\

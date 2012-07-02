@@ -1,6 +1,7 @@
-# $OpenBSD: Makefile,v 1.48 2012/05/26 09:08:57 jasper Exp $
+# $OpenBSD: Makefile,v 1.49 2012/06/22 13:08:09 phessler Exp $
 
 COMMENT=	real-time, concurrent and distributed functional language
+BROKEN-sparc=	Requires v9|v9a|v9b; requested architecture is sparclite.
 
 V=		R15B01
 DISTNAME=	otp_src_${V}
@@ -40,7 +41,8 @@ CONFIGURE_STYLE=autoconf no-autoheader
 CONFIGURE_ENV=	LDFLAGS="-pthread"
 AUTOCONF_VERSION=2.59
 MODGNU_CONFIG_GUESS_DIRS=	${WRKSRC}/erts/autoconf \
-				${WRKSRC}/lib/erl_interface/src/auxdir
+				${WRKSRC}/lib/erl_interface/src/auxdir \
+				${WRKSRC}/lib/common_test/priv/auxdir
 
 .if ${MACHINE_ARCH} == i386
 CONFIGURE_ARGS+=	--enable-ethread-pre-pentium4-compatibility

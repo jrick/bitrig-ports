@@ -1,4 +1,4 @@
-# $OpenBSD: Makefile,v 1.25 2012/05/05 16:55:59 ajacoutot Exp $
+# $OpenBSD: Makefile,v 1.26 2012/06/19 10:25:18 ajacoutot Exp $
 
 COMMENT=	modified libvmime library for Zarafa
 
@@ -7,7 +7,7 @@ DISTNAME=	libvmime-${VMIME_V}+svn603
 PKGNAME=	zarafa-libvmime-${VMIME_V}
 EPOCH=		0
 
-REVISION=	1
+REVISION=	2
 
 EXTRACT_SUFX=	.tar.bz2
 
@@ -36,6 +36,7 @@ USE_GMAKE=	Yes
 BUILD_DEPENDS=	archivers/bzip2
 
 CONFIGURE_STYLE=gnu
+MODGNU_CONFIG_GUESS_DIRS=${WRKSRC} ${WRKSRC}/autotools
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		EXTRA_CFLAGS="${CFLAGS}"

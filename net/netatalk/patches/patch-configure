@@ -1,7 +1,52 @@
-$OpenBSD: patch-configure,v 1.2 2012/04/11 18:39:13 sthen Exp $
---- configure.orig	Thu Jan 12 04:11:55 2012
-+++ configure	Mon Jan 16 16:35:56 2012
-@@ -25308,8 +25308,8 @@ for ac_lib in '' pthread; do
+$OpenBSD$
+--- configure.orig	Thu Apr 26 16:27:12 2012
++++ configure	Mon Jun 25 22:49:45 2012
+@@ -5756,7 +5756,7 @@ newos6*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+-openbsd*)
++openbsd* | bitrig*)
+   if test -z "`echo __ELF__ | $CC -E - | $GREP __ELF__`" || test "$host_os-$host_cpu" = "openbsd2.8-powerpc"; then
+     lt_cv_deplibs_check_method='match_pattern /lib[^/]+(\.so\.[0-9]+\.[0-9]+|\.so|_pic\.a)$'
+   else
+@@ -6373,7 +6373,7 @@ old_postuninstall_cmds=
+ 
+ if test -n "$RANLIB"; then
+   case $host_os in
+-  openbsd*)
++  openbsd* | bitrig*)
+     old_postinstall_cmds="$old_postinstall_cmds~\$RANLIB -t \$tool_oldlib"
+     ;;
+   *)
+@@ -9134,7 +9134,7 @@ $as_echo_n "checking whether the $compiler linker ($LD
+     # we just hope/assume this is gcc and not c89 (= MSVC++)
+     with_gnu_ld=yes
+     ;;
+-  openbsd*)
++  openbsd* | bitrig*)
+     with_gnu_ld=no
+     ;;
+   esac
+@@ -10010,7 +10010,7 @@ $as_echo "$lt_cv_irix_exported_symbol" >&6; }
+     *nto* | *qnx*)
+       ;;
+ 
+-    openbsd*)
++    openbsd* | bitrig*)
+       if test -f /usr/libexec/ld.so; then
+ 	hardcode_direct=yes
+ 	hardcode_shlibpath_var=no
+@@ -11053,7 +11053,7 @@ newsos6)
+   dynamic_linker='ldqnx.so'
+   ;;
+ 
+-openbsd*)
++openbsd* | bitrig*)
+   version_type=sunos
+   sys_lib_dlsearch_path_spec="/usr/lib"
+   need_lib_prefix=no
+@@ -14154,8 +14154,8 @@ for ac_lib in '' pthread; do
    if test -z "$ac_lib"; then
      ac_res="none required"
    else
@@ -10,5 +55,22 @@ $OpenBSD: patch-configure,v 1.2 2012/04/11 18:39:13 sthen Exp $
 +    ac_res=-$ac_lib
 +    LIBS="-$ac_lib  $ac_func_search_save_LIBS"
    fi
-   rm -f conftest.$ac_objext conftest$ac_exeext
- if { (ac_try="$ac_link"
+   if ac_fn_c_try_link "$LINENO"; then :
+   ac_cv_search_pthread_sigmask=$ac_res
+@@ -15761,7 +15761,7 @@ fi
+ 	for ac_header in rpc/rpc.h rpc/pmap_prot.h rpcsvc/rquota.h
+ do :
+   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
+-ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
++ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "#include <rpc/rpc.h>"
+ if eval test \"x\$"$as_ac_Header"\" = x"yes"; then :
+   cat >>confdefs.h <<_ACEOF
+ #define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
+@@ -17239,6 +17239,7 @@ case "$host_os" in
+ 	*darwin*)			this_os=macosx ;;
+ 	*netbsd*) 			this_os=netbsd ;;
+ 	*openbsd*) 			this_os=openbsd ;;
++	*bitrig*)			this_os=bitrig ;;
+ 	*osf*) 				this_os=tru64 ;;
+ 	*solaris*) 			this_os=solaris ;;
+ esac
